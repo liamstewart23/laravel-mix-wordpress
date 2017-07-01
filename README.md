@@ -1,9 +1,9 @@
-# Laravel-mix WordPress
+# Laravel-Mix WordPress
 I work a lot with [Laravel](https://laravel.com/), of course with [Laravel Mix](https://laravel.com/docs/5.4/mix) as well. However, someone asked me to create a [WordPress](https://wordpress.org/) theme. Piece of cake! Or not? How did I install Gulp? Or webpack? And how did I use that? That's when I got the brilliant idea to use Laravel Mix! :)
 
 ## Installation ##
 
- - clone this repo to a directory in your localhost.
+ - Clone this repo to a directory in your localhost.
  - Go to the dir and run `npm install` (Windows/vagrant users don't forget `--no-bin-links`).
 
 Now you have to add WordPress, it can be done in three ways.
@@ -51,28 +51,30 @@ Compile `style.css` (`style.scss`) and `js/app.js` with the following commands:
 
  - If you want to create a new theme copy the `laravel-mix-theme` directory. Edit your webpack mix file and compile it. You don't have to install WordPress ten times. Only activate your new theme.
  - Deregister WordPress defaults jQuery file. To be sure all JQuery needed plugin js files has the jQuery you included in app.js you can set the handle of app.js to jquery. Remove: 
-
-     `if(!is_admin()) {
-	     add_action("wp_enqueue_scripts", "my_jquery_enqueue", 11);
-     }
+    ```
+    if(!is_admin()) {
+        add_action("wp_enqueue_scripts", "my_jquery_enqueue", 11);
+    }
+    
     function my_jquery_enqueue() {
        wp_deregister_script('jquery');
-    }`
-Give handle in `functions.php` (default handle is javascript):
+    }
 
+    // Give handle in functions.php (default handle is javascript):
     wp_enqueue_script( 'jquery', $template_url . '/js/app.js', array(), null, true );
-
-# Todo#
+    ```
+    
+# Todo
 What next?
 - Add a default plugin directory and plugin webpack mix example file.
 - Getting sourceMaps generated (It just does not work with .sourceMaps()).
 - Easy switch between themes and plugins.
 - Easy to use create theme and create plugin scripts.
 
-#The following projects did help me create this one:#
+# The following projects did help me create this one:
 
-[webpack-wordpress](https://github.com/sloansparger/webpack-wordpress)
-[laravel-mix-without-laravel](https://github.com/laravelista/laravel-mix-without-laravel)
+ - [webpack-wordpress](https://github.com/sloansparger/webpack-wordpress)
+ - [laravel-mix-without-laravel](https://github.com/laravelista/laravel-mix-without-laravel)
 
 Thanx :)
 
