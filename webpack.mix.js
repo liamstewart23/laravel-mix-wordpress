@@ -63,6 +63,9 @@ mix.webpackConfig({
 // Set the public map to compile vendors to the right place
 mix.setPublicPath(public_dir);
 
+// Set resource path for fonts to prevent 404 no found fonts
+mix.setResourceRoot('');
+
 // Compile SASS and JS files to the theme
 mix.sass(Theme.directory + '/styles/style.scss', 'wordpress/wp-content/themes/' + Theme.directory)
     .js(Theme.directory + '/javascript/app.js', 'wordpress/wp-content/themes/' + Theme.directory + '/js');
@@ -70,3 +73,20 @@ mix.sass(Theme.directory + '/styles/style.scss', 'wordpress/wp-content/themes/' 
 // Copy all theme files to WordPress theme directory
 mix.copy(Theme.directory + '/files/', 'wordpress/wp-content/themes/' + Theme.directory, false);
 
+/*
+* If you need to add plain css to you sass files you can use the folowing rules.
+* Remove ".sass(Theme.directory + '/styles/style.scss', 'wordpress/wp-content/themes/' + Theme.directory)" from above
+* 
+* This code will compile your sass files to a file appwithoutplain.css in the dir compiled.
+* It will merge that css with the css files you want. You can remove the compiled file everytime
+* it's only used to cache the appwithoutplain.css 
+*
+*/
+// // Compile SASS files to the compiled dir
+// mix.sass(Theme.directory + '/styles/style.scss', '/compiled/appwithoutplain.css');
+
+// // Multiple plain css files to one
+// mix.styles([  
+//            'wordpress/wp-content/themes/' + Theme.directory + '/compiled/appwithoutplain.css',   
+//            'node_modules/animate.css/animate.css'       
+//        ], 'wordpress/wp-content/themes/' + Theme.directory +'/style.css');
